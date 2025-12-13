@@ -132,3 +132,44 @@ int main() {
     
     return 0;
 }
+
+
+// 5) Search for a value in a linked list
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int data;
+    struct Node* next;
+} Node;
+
+int main() {
+    Node* head = (Node*)malloc(sizeof(Node));
+    head->data = 5;
+    head->next = (Node*)malloc(sizeof(Node));
+    head->next->data = 15;
+    head->next->next = (Node*)malloc(sizeof(Node));
+    head->next->next->data = 25;
+    head->next->next->next = NULL;
+    
+    int search = 15;
+    Node* current = head;
+    int found = 0;
+    
+    while (current != NULL) {
+        if (current->data == search) {
+            found = 1;
+            break;
+        }
+        current = current->next;
+    }
+    
+    if (found) {
+        printf("Found\n");
+    } else {
+        printf("Not found\n");
+    }
+    
+    return 0;
+}
