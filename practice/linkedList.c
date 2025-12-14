@@ -294,3 +294,128 @@ int main() {
     return 0;
 }
 
+// 9) Remove all odd values from a linked list
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int val;
+    struct Node* next;
+} Node;
+
+int main() {
+    Node* p = NULL;
+    Node* q;
+    Node* tmp;
+    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8};
+    
+    for (int i = 7; i >= 0; i--) {
+        q = malloc(sizeof(Node));
+        q->val = arr[i];
+        q->next = p;
+        p = q;
+    }
+    
+    while (p != NULL && p->val % 2 == 1) {
+        tmp = p;
+        p = p->next;
+        free(tmp);
+    }
+    
+    if (p != NULL) {
+        q = p;
+        while (q != NULL) {
+            if (q->next == NULL) break;
+            while (q->next != NULL && q->next->val % 2 == 1) {
+                tmp = q->next;
+                q->next = tmp->next;
+                free(tmp);
+            }
+            q = q->next;
+        }
+    }
+    
+    q = p;
+    while (q != NULL) {
+        printf("%d ", q->val);
+        q = q->next;
+    }
+    
+    return 0;
+}
+
+// 10) Count the number of elements in a linked list
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int val;
+    struct Node* next;
+} Node;
+
+int main() {
+    Node* p = NULL;
+    Node* q;
+    int arr[] = {10, 20, 30, 40, 50};
+    
+    for (int i = 4; i >= 0; i--) {
+        q = malloc(sizeof(Node));
+        q->val = arr[i];
+        q->next = p;
+        p = q;
+    }
+    
+    int count = 0;
+    q = p;
+    while (q != NULL) {
+        count++;
+        q = q->next;
+    }
+    
+    printf("Length: %d\n", count);
+    
+    return 0;
+}
+
+// 11) Free all memory in a linked list
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int val;
+    struct Node* next;
+} Node;
+
+int main() {
+    Node* p = NULL;
+    Node* q;
+    
+    for (int i = 3; i > 0; i--) {
+        q = malloc(sizeof(Node));
+        q->val = i * 10;
+        q->next = p;
+        p = q;
+    }
+    
+    q = p;
+    while (q != NULL) {
+        printf("%d ", q->val);
+        q = q->next;
+    }
+    printf("\n");
+    
+    q = p;
+    while (q != NULL) {
+        Node* tmp = q;
+        q = q->next;
+        free(tmp);
+    }
+    
+    printf("Memory freed\n");
+    
+    return 0;
+}
+
