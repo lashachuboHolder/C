@@ -419,3 +419,36 @@ int main() {
     return 0;
 }
 
+// 12) Insert node at the beginning with user input
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int val;
+    struct Node* next;
+} Node;
+
+int main() {
+    Node* p = NULL;
+    Node* q;
+    int x;
+    
+    printf("Enter numbers (negative to stop):\n");
+    while (1) {
+        scanf("%d", &x);
+        if (x < 0) break;
+        q = malloc(sizeof(Node));
+        q->val = x;
+        q->next = p;
+        p = q;
+    }
+    
+    q = p;
+    while (q != NULL) {
+        printf("%d > ", q->val);
+        q = q->next;
+    }
+    
+    return 0;
+}
