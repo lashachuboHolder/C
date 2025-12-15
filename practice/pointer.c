@@ -304,3 +304,111 @@ int main() {
     return 0;
 }
 
+// 11) Free all memory in a linked list
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int val;
+    struct Node* next;
+} Node;
+
+int main() {
+    Node* p = NULL;
+    Node* q;
+    
+    for (int i = 3; i > 0; i--) {
+        q = malloc(sizeof(Node));
+        q->val = i * 10;
+        q->next = p;
+        p = q;
+    }
+    
+    q = p;
+    while (q != NULL) {
+        printf("%d ", q->val);
+        q = q->next;
+    }
+    printf("\n");
+    
+    q = p;
+    while (q != NULL) {
+        Node* tmp = q;
+        q = q->next;
+        free(tmp);
+    }
+    
+    printf("Memory freed\n");
+    
+    return 0;
+}
+
+// 12) Insert node at the beginning with user input
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int val;
+    struct Node* next;
+} Node;
+
+int main() {
+    Node* p = NULL;
+    Node* q;
+    int x;
+    
+    printf("Enter numbers (negative to stop):\n");
+    while (1) {
+        scanf("%d", &x);
+        if (x < 0) break;
+        q = malloc(sizeof(Node));
+        q->val = x;
+        q->next = p;
+        p = q;
+    }
+    
+    q = p;
+    while (q != NULL) {
+        printf("%d > ", q->val);
+        q = q->next;
+    }
+    
+    return 0;
+}
+
+// Print addresses and values using pointers
+
+#include <stdio.h>
+
+int main() {
+    int i = 7;
+    double m = 3.14;
+    int* p = &i;
+    double* pm = &m;
+    
+    printf("%p %p\n", p, pm);
+    printf("%d %g\n", *p, *pm);
+    
+    return 0;
+}
+
+// increment pointers
+
+#include <stdio.h>
+
+int main() {
+    int i = 5;
+    double m = 2.5;
+    int* p = &i;
+    double* pm = &m;
+    
+    printf("Before: %p %p\n", p, pm);
+    p++;
+    pm++;
+    printf("After: %p %p\n", p, pm);
+    
+    return 0;
+}
+
