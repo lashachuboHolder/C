@@ -412,3 +412,93 @@ int main() {
     return 0;
 }
 
+
+// Traverse array
+
+#include <stdio.h>
+
+int main() {
+    int A[6] = {3, 5, 7, 9, 15, 20};
+    int* p = A;
+    
+    for (int i = 0; i < 6; i++) {
+        printf("%d ", *(p++));
+    }
+    
+    return 0;
+}
+
+// Allocate memory with malloc
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int* p;
+    
+    p = malloc(sizeof(int));
+    *p = 3;
+    
+    printf("%p %d\n", (void*)p, *p);
+    
+    free(p);
+    
+    return 0;
+}
+
+
+// Modify array elements
+
+#include <stdio.h>
+
+int main() {
+    int arr[4] = {1, 2, 3, 4};
+    int* p = arr;
+    
+    *(p + 1) = 20;
+    *(p + 3) = 40;
+    
+    for (int i = 0; i < 4; i++) {
+        printf("%d ", arr[i]);
+    }
+    
+    return 0;
+}
+
+// double pointer
+
+#include <stdio.h>
+
+int main() {
+    int x = 50;
+    int* ptr = &x;
+    int** dptr = &ptr;
+    
+    printf("Value: %d\n", **dptr);
+    printf("Address in ptr: %p\n", *dptr);
+    printf("Address of ptr: %p\n", dptr);
+    
+    return 0;
+}
+
+
+// Copy array using pointers
+
+#include <stdio.h>
+
+int main() {
+    int src[] = {1, 2, 3, 4, 5};
+    int dst[5];
+    int* psrc = src;
+    int* pdst = dst;
+    
+    for (int i = 0; i < 5; i++) {
+        *(pdst + i) = *(psrc + i);
+    }
+    
+    for (int i = 0; i < 5; i++) {
+        printf("%d ", dst[i]);
+    }
+    
+    return 0;
+}
