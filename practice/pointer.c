@@ -98,3 +98,209 @@ int main() {
     
     return 0;
 }
+
+// 6) Create a linked list from an array and print it
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int value;
+    struct Node* next;
+} Node;
+
+int A[8] = {3, 7, 1, 9, 4, 2, 8, 5};
+
+int main() {
+    Node* p = NULL;
+    Node* q;
+    size_t n = sizeof(Node);
+    
+    for (int i = 7; i >= 0; i--) {
+        q = malloc(n);
+        q->next = p;
+        q->value = A[i];
+        p = q;
+    }
+    
+    while (q != NULL) {
+        printf("%d -> ", q->value);
+        q = q->next;
+    }
+    printf("NULL\n");
+    
+    return 0;
+}
+
+// 7) Find the maximum value in a linked list
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
+
+typedef struct Node {
+    int val;
+    struct Node* next;
+} Node;
+
+int main() {
+    Node* p = NULL;
+    Node* q;
+    int arr[] = {5, 12, 3, 9, 15, 7};
+    
+    for (int i = 5; i >= 0; i--) {
+        q = malloc(sizeof(Node));
+        q->val = arr[i];
+        q->next = p;
+        p = q;
+    }
+    
+    int max = INT_MIN;
+    q = p;
+    while (q != NULL) {
+        if (q->val > max) {
+            max = q->val;
+        }
+        q = q->next;
+    }
+    
+    printf("Max: %d\n", max);
+    
+    return 0;
+}
+
+// 8) Concatenate two linked lists
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int val;
+    struct Node* next;
+} Node;
+
+int main() {
+    Node* p1 = NULL;
+    Node* p2 = NULL;
+    Node* q;
+    
+    int arr1[] = {1, 2, 3};
+    int arr2[] = {4, 5, 6};
+    
+    for (int i = 2; i >= 0; i--) {
+        q = malloc(sizeof(Node));
+        q->val = arr1[i];
+        q->next = p1;
+        p1 = q;
+    }
+    
+    for (int i = 2; i >= 0; i--) {
+        q = malloc(sizeof(Node));
+        q->val = arr2[i];
+        q->next = p2;
+        p2 = q;
+    }
+    
+    if (p1 != NULL) {
+        q = p1;
+        while (q->next != NULL) {
+            q = q->next;
+        }
+        q->next = p2;
+    }
+    
+    q = p1;
+    while (q != NULL) {
+        printf("%d -> ", q->val);
+        q = q->next;
+    }
+    printf("NULL\n");
+    
+    return 0;
+}
+
+// 9) Remove all odd values from a linked list
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int val;
+    struct Node* next;
+} Node;
+
+int main() {
+    Node* p = NULL;
+    Node* q;
+    Node* tmp;
+    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8};
+    
+    for (int i = 7; i >= 0; i--) {
+        q = malloc(sizeof(Node));
+        q->val = arr[i];
+        q->next = p;
+        p = q;
+    }
+    
+    while (p != NULL && p->val % 2 == 1) {
+        tmp = p;
+        p = p->next;
+        free(tmp);
+    }
+    
+    if (p != NULL) {
+        q = p;
+        while (q != NULL) {
+            if (q->next == NULL) break;
+            while (q->next != NULL && q->next->val % 2 == 1) {
+                tmp = q->next;
+                q->next = tmp->next;
+                free(tmp);
+            }
+            q = q->next;
+        }
+    }
+    
+    q = p;
+    while (q != NULL) {
+        printf("%d ", q->val);
+        q = q->next;
+    }
+    
+    return 0;
+}
+
+// 10) Count the number of elements in a linked list
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int val;
+    struct Node* next;
+} Node;
+
+int main() {
+    Node* p = NULL;
+    Node* q;
+    int arr[] = {10, 20, 30, 40, 50};
+    
+    for (int i = 4; i >= 0; i--) {
+        q = malloc(sizeof(Node));
+        q->val = arr[i];
+        q->next = p;
+        p = q;
+    }
+    
+    int count = 0;
+    q = p;
+    while (q != NULL) {
+        count++;
+        q = q->next;
+    }
+    
+    printf("Length: %d\n", count);
+    
+    return 0;
+}
+
