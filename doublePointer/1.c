@@ -266,7 +266,6 @@ void example10_linked_list() {
 }
 
 int main(int argc, char *argv[]) {
-    printf("TPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPW\n");
     printf("Q   DOUBLE POINTER EXAMPLES IN C            Q\n");
     printf("TPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPW\n\n");
 
