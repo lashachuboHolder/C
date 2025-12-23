@@ -201,7 +201,6 @@ void example8_swap_pointers() {
 void example9_command_line_simulation() {
     printf("=== Example 9: Command Line Arguments Style ===\n");
 
-    // Simulate argv
     char *argv[] = {
         "program",
         "arg1",
