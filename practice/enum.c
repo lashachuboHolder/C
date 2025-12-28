@@ -8,6 +8,9 @@ typedef enum {
     OWNER_READ = 1 << 0, OWNER_WRITE = 1 << 1, OWNER_EXEC = 1 << 2,
     GROUP_READ = 1 << 3, GROUP_WRITE = 1 << 4
 } Permission;
+typedef enum { FLAG_A = 1 << 0, FLAG_B = 1 << 1, FLAG_C = 1 << 2 } StatusFlag;
+typedef enum { HTTP = 1 << 0, HTTPS = 1 << 1, FTP = 1 << 2, SSH = 1 << 3 } Protocol;
+typedef enum { RED, YELLOW, GREEN } TrafficLight;
 
 void exercise1() {
     printf("\n=== EXERCISE 1: Days of the Week ===\n");
@@ -53,6 +56,64 @@ void exercise4() {
     printf("After toggle A off: A=%d B=%d C=%d\n", !!(status&FLAG_A), !!(status&FLAG_B), !!(status&FLAG_C));
 }
 
+void exercise5() {
+    printf("\n=== EXERCISE 5: Remove a Bit Flag ===\n");
+
+    int protocols = HTTP | HTTPS | FTP | SSH;
+    printf("Before removing FTP: %d\n", protocols);
+    printf("Active protocols: ");
+    if (protocols & HTTP) printf("HTTP ");
+    if (protocols & HTTPS) printf("HTTPS ");
+    if (protocols & FTP) printf("FTP ");
+    if (protocols & SSH) printf("SSH");
+    printf("\n");
+
+    protocols &= ~FTP;
+    printf("\nAfter removing FTP: %d\n", protocols);
+    printf("Active protocols: ");
+    if (protocols & HTTP) printf("HTTP ");
+    if (protocols & HTTPS) printf("HTTPS ");
+    if (protocols & FTP) printf("FTP ");
+    if (protocols & SSH) printf("SSH");
+    printf("\n");
+}
+
+void exercise6() {
+    printf("\n=== EXERCISE 6: Check Specific Bit Pattern ===\n");
+
+    srand(time(NULL));
+    int count = 0;
+
+    printf("Numbers with bit 0 = 1 AND bit 1 = 0:\n");
+    for (int i = 0; i < 50; i++) {
+        int num = rand() % 32;
+        if ((num & (1 << 0)) && !(num & (1 << 1))) {
+            printf("%d ", num);
+            count++;
+        }
+    }
+    printf("\n\nTotal count: %d out of 50\n", count);
+}
+
+TrafficLight getNextLight(TrafficLight current) {
+    switch(current) {
+        case RED: return GREEN;
+        case GREEN: return YELLOW;
+        case YELLOW: return RED;
+        default: return RED;
+    }
+}
+
+const char* getLightName(TrafficLight light) {
+    switch(light) {
+        case RED: return "RED";
+        case YELLOW: return "YELLOW";
+        case GREEN: return "GREEN";
+        default: return "UNKNOWN";
+    }
+}
+
+
 
 int main() {
     printf("ENUM PRACTICE EXERCISES\n");
@@ -62,7 +123,8 @@ int main() {
     exercise2();
     exercise3();
     exercise4();
-
+    exercise5();
+    exercise6();
 
     return 0;
 }
