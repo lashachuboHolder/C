@@ -113,7 +113,16 @@ const char* getLightName(TrafficLight light) {
     }
 }
 
+void challenge() {
+    printf("\n=== CHALLENGE: Traffic Light State Machine ===\n");
 
+    TrafficLight current = RED;
+
+    for (int i = 0; i < 10; i++) {
+        printf("Step %d: %s\n", i + 1, getLightName(current));
+        current = getNextLight(current);
+    }
+}
 
 int main() {
     printf("ENUM PRACTICE EXERCISES\n");
@@ -125,6 +134,7 @@ int main() {
     exercise4();
     exercise5();
     exercise6();
+    challenge();
 
     return 0;
 }
